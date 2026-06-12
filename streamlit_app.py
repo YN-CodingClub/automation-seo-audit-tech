@@ -179,21 +179,26 @@ def render_issue_cards(issues: list[IssueRecord]) -> None:
         st.markdown("</div>", unsafe_allow_html=True)
 
 
-st.title("SEO Audit Automator")
-st.caption(
-    "Audit technique déterministe sur exports Screaming Frog FR/EN. "
-    "Périmètre par défaut: URLs HTML indexables."
+st.markdown(
+    """
+    <section class="tool-hero">
+        <div class="tool-kicker">Audit technique</div>
+        <h1 class="tool-title">SEO Audit Automator</h1>
+        <p class="tool-lead">Analyse les exports Screaming Frog et priorise les irritants techniques exploitables en audit SEO.</p>
+    </section>
+    """,
+    unsafe_allow_html=True,
 )
 
 st.markdown(
     """
 <style>
 .audit-card {
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
+    border: 1px solid var(--yn-border);
+    border-radius: 8px;
     padding: 1rem;
     margin-bottom: 1rem;
-    background: #fcfcfd;
+    background: var(--yn-card);
 }
 </style>
 """,
