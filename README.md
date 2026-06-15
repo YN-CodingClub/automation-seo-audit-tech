@@ -13,7 +13,7 @@ Application Streamlit publique pour analyser des exports Screaming Frog et produ
 | Entrypoint Streamlit | `streamlit_app.py` |
 | Commande locale | `streamlit run streamlit_app.py` |
 | Compilation | `python3 -m py_compile streamlit_app.py audit_engine.py automation_seo_theme.py` |
-| Tests | Aucun test automatisé à date |
+| Tests | `python3 -m pytest` |
 | Build marker live vérifié | `automation-seo-audit-tech:0388781` |
 | Secrets | Aucun secret requis |
 
@@ -49,6 +49,7 @@ Vérification minimale :
 
 ```bash
 python3 -m py_compile streamlit_app.py audit_engine.py automation_seo_theme.py
+python3 -m pytest
 ```
 
 ## Documentation
@@ -82,13 +83,13 @@ L'app doit rester alignée avec le design Automation SEO :
 2. Déclarer les `required_columns` avec les clés canoniques de `COLUMN_ALIASES`.
 3. Ajouter la logique d'évaluation dans `evaluate_ticket` si la règle n'est pas couverte par les helpers existants.
 4. Vérifier que le scénario passe en `not_evaluable` si les colonnes manquent.
-5. Lancer la compilation.
-6. Ajouter un test unitaire dans un futur batch, car le repo n'a pas encore de suite de tests.
+5. Ajouter ou adapter un test unitaire dans `tests/`.
+6. Lancer la compilation et `pytest`.
 
 ## Dette documentaire et tests
 
-À créer dans un prochain lot :
+À renforcer dans un prochain lot :
 
-- fixtures Screaming Frog anonymisées ;
-- tests unitaires sur `audit_engine.py` ;
+- fixtures Screaming Frog plus larges ;
+- tests de génération PPTX si `build_pptx` est isolé de l'import Streamlit ;
 - documentation exhaustive `docs/AUDIT_RULES.md` listant chaque scénario.

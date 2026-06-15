@@ -669,6 +669,23 @@ def decode_csv(raw_bytes: bytes) -> str:
 
 
 def detect_delimiter(sample: str) -> str:
+    candidates = [",", ";", "\t", "|"]
+    header_hints = {normalize_name(alias) for alias in ["Adresse", "Address", "Code HTTP", "Status Code", "Title 1", "H1-1"]}
+    best_delimiter = ","
+    best_score = -1
+    for delimiter in candidates:
+        score = 0
+        for line in sample.splitlines()[:10]:
+            cells = [cell for cell in line.split(delimiter) if cell.strip()]
+            tokens = {normalize_name(cell) for cell in cells}
+            score += max(len(cells) - 1, 0)
+            score += sum(2 for hint in header_hints if hint in tokens)
+        if score > best_score:
+            best_score = score
+            best_delimiter = delimiter
+    if best_score > 0:
+        return best_delimiter
+
     try:
         dialect = csv.Sniffer().sniff(sample, delimiters=",;\t|")
         return dialect.delimiter

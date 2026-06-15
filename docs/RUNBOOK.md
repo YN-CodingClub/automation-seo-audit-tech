@@ -25,6 +25,7 @@ Vérification minimale :
 
 ```bash
 python3 -m py_compile streamlit_app.py audit_engine.py automation_seo_theme.py
+python3 -m pytest
 ```
 
 ## Smoke test live
@@ -87,6 +88,7 @@ Action :
 
 ```bash
 python3 -m py_compile streamlit_app.py audit_engine.py automation_seo_theme.py
+python3 -m pytest
 ```
 
 Puis vérifier :
